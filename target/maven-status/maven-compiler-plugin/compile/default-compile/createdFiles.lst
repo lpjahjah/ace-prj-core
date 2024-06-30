@@ -1,0 +1,5 @@
+com\ace\exames\core\services\ExamesServiceBean.class
+com\ace\exames\core\interfaces\ExamesService.class
+com\ace\exames\core\commons\BaseModel.class
+com\ace\exames\core\models\Exame.class
+com\ace\exames\core\utils\StringUtils.class
