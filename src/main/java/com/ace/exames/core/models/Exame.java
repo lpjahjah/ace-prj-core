@@ -1,14 +1,19 @@
 package com.ace.exames.core.models;
 
+import java.sql.ResultSet;
+
 import com.ace.exames.core.commons.BaseModel;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+@EqualsAndHashCode(callSuper=false)
 @Data
-public class Exame implements BaseModel {
-	
-	private static final long serialVersionUID = -3631309734944846674L;
+@NoArgsConstructor
+public class Exame extends BaseModel {
+	private static final long serialVersionUID = 1L;
 
 	private Integer cdExame;
 	
@@ -21,17 +26,20 @@ public class Exame implements BaseModel {
 	private String dsDetalheExame;
 	
 	private String dsDetalheExame1;
-	
-	@Override
-	public String getTableName() {
-		return "exame";
-	}
 
 	@Override
-	public String getIdentifier() {
-		return "cdExame";
+	protected void loadFromResultSet(ResultSet resultSet) {
+		try {
+			this.cdExame = resultSet.getInt("cd_exame");
+			this.nmExame = resultSet.getString("nm_exame");
+			this.icAtivo = resultSet.getBoolean("ic_ativo");
+			this.dsDetalheExame = resultSet.getString("ds_detalhe_exame");
+			this.dsDetalheExame1 = resultSet.getString("ds_detalhe_exame1");
+		} catch (Exception e) {
+        	throw new RuntimeException("Failed to map model from ResultSet", e);
+        }
 	}
 	
 	
-	
+		
 }

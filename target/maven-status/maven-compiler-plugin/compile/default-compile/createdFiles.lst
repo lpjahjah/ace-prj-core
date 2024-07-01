@@ -1,5 +1,9 @@
 com\ace\exames\core\services\ExamesServiceBean.class
-com\ace\exames\core\interfaces\ExamesService.class
-com\ace\exames\core\commons\BaseModel.class
 com\ace\exames\core\models\Exame.class
 com\ace\exames\core\utils\StringUtils.class
+com\ace\exames\core\interfaces\ExamesService.class
+com\ace\exames\core\commons\BaseModel.class
+com\ace\exames\core\configs\Datasource.class
+com\ace\exames\core\daos\ExamesDao$1.class
+com\ace\exames\core\daos\ExamesDao.class
+com\ace\exames\core\enums\ExameStatusEnum.class
