@@ -15,5 +15,9 @@ public interface ExamesService {
 
 	Exame getExame(Integer id);
 	
+	void createExame(Exame exame);
+	
+	void updateExame(Exame exame);
+	
 	void deleteExame (Integer id);
 }

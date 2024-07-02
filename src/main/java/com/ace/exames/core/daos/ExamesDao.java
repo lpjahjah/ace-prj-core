@@ -24,6 +24,11 @@ public class ExamesDao {
 	
 	private final String DELETE_STATEMENT = "UPDATE exame SET dt_deletado = now() WHERE cd_exame = ?";
 	
+	private final String INSERT_STATEMENT = "INSERT INTO exame (nm_exame, ic_ativo, ds_detalhe_exame, ds_detalhe_exame1) VALUES (?, ?, ?, ?)";
+	
+	private final String UPDATE_STATEMENT = "UPDATE exame SET nm_exame = ?, ic_ativo = ?, ds_detalhe_exame = ?, ds_detalhe_exame1 = ? WHERE cd_exame = ?";
+
+	
 	public List<Exame> getAll(int page, int size) throws SQLException {
 		List<Object> params = List.of(page * size);
 		
@@ -78,6 +83,29 @@ public class ExamesDao {
 	
 	public Exame getOne(Integer id) throws SQLException {	
 		return datasource.selectFirst(SELECT_ONE, List.of(id), Exame.class);
+	}
+	
+	public void insert(Exame exame) throws SQLException {	
+		List<Object> params = List.of(
+				exame.getNmExame(), 
+				exame.getIcAtivo(),
+				exame.getDsDetalheExame(),
+				exame.getDsDetalheExame1()
+		);
+		
+		datasource.execute(INSERT_STATEMENT, params);
+	}
+	
+	public void update(Exame exame) throws SQLException {	
+		List<Object> params = List.of(
+				exame.getNmExame(), 
+				exame.getIcAtivo(),
+				exame.getDsDetalheExame(),
+				exame.getDsDetalheExame1(),
+				exame.getCdExame()
+		);
+		
+		datasource.execute(UPDATE_STATEMENT, params);
 	}
 	
 	public void delete(Integer id) throws SQLException {	

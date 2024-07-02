@@ -51,7 +51,7 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
-	public Exame getExame (Integer id) {
+	public Exame getExame(Integer id) {
 		try {
 			return  examesDao.getOne(id);
 		} catch (SQLException e) {
@@ -60,7 +60,25 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
-	public void deleteExame (Integer id) {
+	public void createExame(Exame exame) {
+		try {
+			examesDao.insert(exame);
+		} catch (SQLException e) {
+        	throw new RuntimeException("Failed to retrieve data from server", e);
+        }
+	}
+	
+	@Override
+	public void updateExame(Exame exame) {
+		try {
+			examesDao.update(exame);
+		} catch (SQLException e) {
+        	throw new RuntimeException("Failed to retrieve data from server", e);
+        }
+	}
+	
+	@Override
+	public void deleteExame(Integer id) {
 		try {
 			examesDao.delete(id);
 		} catch (SQLException e) {

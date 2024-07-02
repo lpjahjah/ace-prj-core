@@ -21,7 +21,7 @@ public class Exame extends BaseModel {
 	private String nmExame;
 	
 	@NonNull
-	private Boolean icAtivo = true;
+	private Boolean icAtivo = false;
 	
 	private String dsDetalheExame;
 	
