@@ -4,20 +4,19 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
-import com.ace.exames.core.enums.ExameStatusEnum;
-import com.ace.exames.core.models.Exame;
+import com.ace.exames.core.models.Funcionario;
 
 @Remote
 public interface FuncionariosService {
-	List<Exame> getExames(int page, int size);
+	List<Funcionario> getFuncionarios(int page, int size);
 
-	List<Exame> searchExames(Integer codigo, String nome, ExameStatusEnum status, int page, int size);
+	List<Funcionario> searchFuncionarios(Integer codigo, String nome, int page, int size);
 
-	Exame getExame(Integer id);
+	Funcionario getFuncionario(Integer id);
 	
-	void createExame(Exame exame);
+	void createFuncionario(Funcionario funcionario);
 	
-	void updateExame(Exame exame);
+	void updateFuncionario(Funcionario funcionario);
 	
-	void deleteExame (Integer id);
+	void deleteFuncionario(Integer id);
 }

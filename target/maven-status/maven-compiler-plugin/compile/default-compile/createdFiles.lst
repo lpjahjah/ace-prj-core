@@ -1,6 +1,9 @@
+com\ace\exames\core\daos\FuncionariosDao.class
 com\ace\exames\core\services\ExamesServiceBean.class
+com\ace\exames\core\models\Funcionario.class
+com\ace\exames\core\interfaces\FuncionariosService.class
 com\ace\exames\core\models\Exame.class
-com\ace\exames\core\utils\StringUtils.class
+com\ace\exames\core\services\FuncionariosServiceBean.class
 com\ace\exames\core\interfaces\ExamesService.class
 com\ace\exames\core\commons\BaseModel.class
 com\ace\exames\core\configs\Datasource.class

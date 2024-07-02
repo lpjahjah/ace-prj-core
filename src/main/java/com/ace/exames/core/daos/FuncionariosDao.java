@@ -7,63 +7,48 @@ import java.util.Optional;
 import java.util.StringJoiner;
 
 import com.ace.exames.core.configs.Datasource;
-import com.ace.exames.core.enums.ExameStatusEnum;
-import com.ace.exames.core.models.Exame;
+import com.ace.exames.core.models.Funcionario;
 
 public class FuncionariosDao {
 
 	private final Datasource datasource = new Datasource();
 	
-	private final String DEFAULT_SELECT = "SELECT * FROM exame WHERE dt_deletado IS NULL ";
+	private final String DEFAULT_SELECT = "SELECT * FROM funcionario WHERE dt_deletado IS NULL ";
 	
 	private final String SELECT_STATEMENT = DEFAULT_SELECT + "LIMIT ?";
 	
-	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_exame LIMIT ?";
+	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_funcionario LIMIT ?";
 	
-	private final String SELECT_ONE = DEFAULT_SELECT + "AND cd_exame = ?";
+	private final String SELECT_ONE = DEFAULT_SELECT + "AND cd_funcionario = ?";
 	
-	private final String DELETE_STATEMENT = "UPDATE exame SET dt_deletado = now() WHERE cd_exame = ?";
+	private final String DELETE_STATEMENT = "UPDATE funcionario SET dt_deletado = now() WHERE cd_funcionario = ?";
 	
-	private final String INSERT_STATEMENT = "INSERT INTO exame (nm_exame, ic_ativo, ds_detalhe_exame, ds_detalhe_exame1) VALUES (?, ?, ?, ?)";
+	private final String INSERT_STATEMENT = "INSERT INTO funcionario (nm_funcionario) VALUES (?)";
 	
-	private final String UPDATE_STATEMENT = "UPDATE exame SET nm_exame = ?, ic_ativo = ?, ds_detalhe_exame = ?, ds_detalhe_exame1 = ? WHERE cd_exame = ?";
+	private final String UPDATE_STATEMENT = "UPDATE funcionario SET nm_funcionario = ? WHERE cd_funcionario = ?";
 
 	
-	public List<Exame> getAll(int page, int size) throws SQLException {
+	public List<Funcionario> getAll(int page, int size) throws SQLException {
 		List<Object> params = List.of(page * size);
 		
-		List<Exame> exames = datasource.select(SELECT_STATEMENT, params, Exame.class);
+		List<Funcionario> funcionarios = datasource.select(SELECT_STATEMENT, params, Funcionario.class);
 		
-		return exames;
+		return funcionarios;
 	}
 	
-	public List<Exame> search(Optional<Integer> codigo, Optional<String> nome, Optional<ExameStatusEnum> status, int page, int size) throws SQLException {
+	public List<Funcionario> search(Optional<Integer> codigo, Optional<String> nome, int page, int size) throws SQLException {
 		
 		List<Object> params = new ArrayList<>();
 		StringJoiner filters = new StringJoiner(" AND ", " AND ", "");
 				
 		if (codigo.isPresent()) {
-			filters.add("cd_exame = ?");
+			filters.add("cd_funcionario = ?");
 			params.add(codigo.get());
 		}
 		
 		if (nome.isPresent()) {
-			filters.add("nm_exame LIKE ?");
+			filters.add("nm_funcionario LIKE ?");
 			params.add(nome.get() + "%");
-		}
-		
-		if (status.isPresent()) {
-			switch (status.get()) {
-				case AMBOS:
-					break;
-				case ATIVO:
-					filters.add("ic_ativo = ?");
-					params.add(1);
-					break;
-				case INATIVO:
-					filters.add("(ic_ativo = ? OR ic_ativo IS NULL)");
-					params.add(0);
-			}
 		}
 		
 		String statement = 
@@ -76,33 +61,25 @@ public class FuncionariosDao {
 		
 		params.add(page * size);
 		
-		List<Exame> exames = datasource.select(statement, params, Exame.class);
-		
-		return exames;
+		return datasource.select(statement, params, Funcionario.class);
 	}
 	
-	public Exame getOne(Integer id) throws SQLException {	
-		return datasource.selectFirst(SELECT_ONE, List.of(id), Exame.class);
+	public Funcionario getOne(Integer id) throws SQLException {	
+		return datasource.selectFirst(SELECT_ONE, List.of(id), Funcionario.class);
 	}
 	
-	public void insert(Exame exame) throws SQLException {	
+	public void insert(Funcionario funcionario) throws SQLException {	
 		List<Object> params = List.of(
-				exame.getNmExame(), 
-				exame.getIcAtivo(),
-				exame.getDsDetalheExame(),
-				exame.getDsDetalheExame1()
+				funcionario.getNmFuncionario()
 		);
 		
 		datasource.execute(INSERT_STATEMENT, params);
 	}
 	
-	public void update(Exame exame) throws SQLException {	
+	public void update(Funcionario funcionario) throws SQLException {	
 		List<Object> params = List.of(
-				exame.getNmExame(), 
-				exame.getIcAtivo(),
-				exame.getDsDetalheExame(),
-				exame.getDsDetalheExame1(),
-				exame.getCdExame()
+				funcionario.getNmFuncionario(),
+				funcionario.getCdFuncionario()
 		);
 		
 		datasource.execute(UPDATE_STATEMENT, params);

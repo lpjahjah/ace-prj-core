@@ -9,9 +9,8 @@ import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
-import com.ace.exames.core.models.Exame;
-import com.ace.exames.core.daos.ExamesDao;
-import com.ace.exames.core.enums.ExameStatusEnum;
+import com.ace.exames.core.models.Funcionario;
+import com.ace.exames.core.daos.FuncionariosDao;
 import com.ace.exames.core.interfaces.FuncionariosService;
 
 @Stateless(name = "FuncionariosService")
@@ -20,67 +19,62 @@ public class FuncionariosServiceBean implements FuncionariosService {
 	@Resource
     private SessionContext context;
 	
-	private final ExamesDao examesDao = new ExamesDao();
+	private final FuncionariosDao funcionariosDao = new FuncionariosDao();
 	
 	@Override
-	public List<Exame> getExames(int page, int size) {
+	public List<Funcionario> getFuncionarios(int page, int size) {
 		try {
-			List<Exame> exames = examesDao.getAll(page, size);
-			
-			return exames;
+			return funcionariosDao.getAll(page, size);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }
 	}
 	
 	@Override
-	public List<Exame> searchExames(Integer codigo, String nome, ExameStatusEnum status, int page, int size) {
+	public List<Funcionario> searchFuncionarios(Integer codigo, String nome, int page, int size) {
 		try {
-			List<Exame> exames = examesDao.search(
+			return funcionariosDao.search(
 					Optional.ofNullable(codigo), 
 					Optional.ofNullable(nome).filter(Predicate.not(String::isBlank)), 
-					Optional.ofNullable(status), 
 					page,
 					size
 			);
-			
-			return exames;
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }
 	}
 	
 	@Override
-	public Exame getExame(Integer id) {
+	public Funcionario getFuncionario(Integer id) {
 		try {
-			return  examesDao.getOne(id);
+			return  funcionariosDao.getOne(id);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }
 	}
 	
 	@Override
-	public void createExame(Exame exame) {
+	public void createFuncionario(Funcionario funcionario) {
 		try {
-			examesDao.insert(exame);
+			funcionariosDao.insert(funcionario);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }
 	}
 	
 	@Override
-	public void updateExame(Exame exame) {
+	public void updateFuncionario(Funcionario funcionario) {
 		try {
-			examesDao.update(exame);
+			funcionariosDao.update(funcionario);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }
 	}
 	
 	@Override
-	public void deleteExame(Integer id) {
+	public void deleteFuncionario(Integer id) {
 		try {
-			examesDao.delete(id);
+			funcionariosDao.delete(id);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }

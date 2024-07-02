@@ -15,26 +15,16 @@ import lombok.NonNull;
 public class Funcionario extends BaseModel {
 	private static final long serialVersionUID = 1L;
 
-	private Integer cdExame;
+	private Integer cdFuncionario;
 	
 	@NonNull
-	private String nmExame;
-	
-	@NonNull
-	private Boolean icAtivo = false;
-	
-	private String dsDetalheExame;
-	
-	private String dsDetalheExame1;
+	private String nmFuncionario;
 
 	@Override
 	protected void loadFromResultSet(ResultSet resultSet) {
 		try {
-			this.cdExame = resultSet.getInt("cd_exame");
-			this.nmExame = resultSet.getString("nm_exame");
-			this.icAtivo = resultSet.getBoolean("ic_ativo");
-			this.dsDetalheExame = resultSet.getString("ds_detalhe_exame");
-			this.dsDetalheExame1 = resultSet.getString("ds_detalhe_exame1");
+			this.cdFuncionario = resultSet.getInt("cd_funcionario");
+			this.nmFuncionario = resultSet.getString("nm_funcionario");
 		} catch (Exception e) {
         	throw new RuntimeException("Failed to map model from ResultSet", e);
         }
