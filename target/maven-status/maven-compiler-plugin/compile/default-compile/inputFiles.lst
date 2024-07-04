@@ -1,11 +1,15 @@
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\commons\BaseModel.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\configs\Datasource.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\ExamesDao.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\ExamesRealizadosDao.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\FuncionariosDao.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\enums\ExameStatusEnum.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\interfaces\ExamesRealizadosService.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\interfaces\ExamesService.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\interfaces\FuncionariosService.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\models\Exame.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\models\ExameRealizado.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\models\Funcionario.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\services\ExamesRealizadosServiceBean.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\services\ExamesServiceBean.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\services\FuncionariosServiceBean.java

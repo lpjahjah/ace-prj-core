@@ -34,6 +34,15 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
+	public List<Exame> getAllExamesAtivosOrderedByName() {
+		try {
+			return  examesDao.getAllAtivosOrderByName();
+		} catch (SQLException e) {
+        	throw new RuntimeException("Failed to retrieve data from server", e);
+        }
+	}
+	
+	@Override
 	public List<Exame> searchExames(Integer codigo, String nome, ExameStatusEnum status, int page, int size) {
 		try {
 			List<Exame> exames = examesDao.search(

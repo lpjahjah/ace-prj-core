@@ -10,6 +10,8 @@ import com.ace.exames.core.models.Exame;
 @Remote
 public interface ExamesService {
 	List<Exame> getExames(int page, int size);
+	
+	List<Exame> getAllExamesAtivosOrderedByName();
 
 	List<Exame> searchExames(Integer codigo, String nome, ExameStatusEnum status, int page, int size);
 

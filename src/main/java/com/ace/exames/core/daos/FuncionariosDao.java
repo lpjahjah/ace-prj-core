@@ -15,6 +15,8 @@ public class FuncionariosDao {
 	
 	private final String DEFAULT_SELECT = "SELECT * FROM funcionario WHERE dt_deletado IS NULL ";
 	
+	private final String SELECT_ALL_ORDER_BY_NAME = DEFAULT_SELECT + "ORDER BY nm_funcionario";
+	
 	private final String SELECT_STATEMENT = DEFAULT_SELECT + "LIMIT ?";
 	
 	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_funcionario LIMIT ?";
@@ -27,6 +29,16 @@ public class FuncionariosDao {
 	
 	private final String UPDATE_STATEMENT = "UPDATE funcionario SET nm_funcionario = ? WHERE cd_funcionario = ?";
 
+	
+	public List<Funcionario> getAll() throws SQLException {
+		
+		return datasource.select(DEFAULT_SELECT, Funcionario.class);
+	}
+	
+	public List<Funcionario> getAllOrderedByName() throws SQLException {
+		
+		return datasource.select(SELECT_ALL_ORDER_BY_NAME, Funcionario.class);
+	}
 	
 	public List<Funcionario> getAll(int page, int size) throws SQLException {
 		List<Object> params = List.of(page * size);

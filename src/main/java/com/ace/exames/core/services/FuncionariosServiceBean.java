@@ -31,6 +31,15 @@ public class FuncionariosServiceBean implements FuncionariosService {
 	}
 	
 	@Override
+	public List<Funcionario> getAllFuncionariosOrderedByName() {
+		try {
+			return funcionariosDao.getAllOrderedByName();
+		} catch (SQLException e) {
+        	throw new RuntimeException("Failed to retrieve data from server", e);
+        }
+	}
+	
+	@Override
 	public List<Funcionario> searchFuncionarios(Integer codigo, String nome, int page, int size) {
 		try {
 			return funcionariosDao.search(

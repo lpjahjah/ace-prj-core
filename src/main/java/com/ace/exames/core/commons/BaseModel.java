@@ -28,5 +28,5 @@ public abstract class BaseModel implements Serializable {
         }
 	}
     
-    protected abstract void loadFromResultSet(ResultSet resultSet);
+   protected abstract void loadFromResultSet(ResultSet resultSet);
 }

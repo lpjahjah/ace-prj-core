@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper=true)
 @Data
 @NoArgsConstructor
 public class Exame extends BaseModel {
@@ -38,8 +38,5 @@ public class Exame extends BaseModel {
 		} catch (Exception e) {
         	throw new RuntimeException("Failed to map model from ResultSet", e);
         }
-	}
-	
-	
-		
+	}		
 }

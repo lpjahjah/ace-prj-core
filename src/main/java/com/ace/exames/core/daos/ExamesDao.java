@@ -18,6 +18,10 @@ public class ExamesDao {
 	
 	private final String SELECT_STATEMENT = DEFAULT_SELECT + "LIMIT ?";
 	
+	private final String SELECT_ATIVOS = DEFAULT_SELECT + "AND ic_ativo = 1";
+	
+	private final String SELECT_ATIVOS_ORDER_BY_NAME = SELECT_ATIVOS + " ORDER BY nm_exame";
+	
 	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_exame LIMIT ?";
 	
 	private final String SELECT_ONE = DEFAULT_SELECT + "AND cd_exame = ?";
@@ -27,7 +31,6 @@ public class ExamesDao {
 	private final String INSERT_STATEMENT = "INSERT INTO exame (nm_exame, ic_ativo, ds_detalhe_exame, ds_detalhe_exame1) VALUES (?, ?, ?, ?)";
 	
 	private final String UPDATE_STATEMENT = "UPDATE exame SET nm_exame = ?, ic_ativo = ?, ds_detalhe_exame = ?, ds_detalhe_exame1 = ? WHERE cd_exame = ?";
-
 	
 	public List<Exame> getAll(int page, int size) throws SQLException {
 		List<Object> params = List.of(page * size);
@@ -35,6 +38,14 @@ public class ExamesDao {
 		List<Exame> exames = datasource.select(SELECT_STATEMENT, params, Exame.class);
 		
 		return exames;
+	}
+	
+	public List<Exame> getAllAtivos() throws SQLException {		
+		return datasource.select(SELECT_ATIVOS, Exame.class);
+	}
+	
+	public List<Exame> getAllAtivosOrderByName() throws SQLException {		
+		return datasource.select(SELECT_ATIVOS_ORDER_BY_NAME, Exame.class);
 	}
 	
 	public List<Exame> search(Optional<Integer> codigo, Optional<String> nome, Optional<ExameStatusEnum> status, int page, int size) throws SQLException {

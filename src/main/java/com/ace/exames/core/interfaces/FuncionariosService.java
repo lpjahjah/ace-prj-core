@@ -9,6 +9,8 @@ import com.ace.exames.core.models.Funcionario;
 @Remote
 public interface FuncionariosService {
 	List<Funcionario> getFuncionarios(int page, int size);
+	
+	List<Funcionario> getAllFuncionariosOrderedByName();
 
 	List<Funcionario> searchFuncionarios(Integer codigo, String nome, int page, int size);
 
