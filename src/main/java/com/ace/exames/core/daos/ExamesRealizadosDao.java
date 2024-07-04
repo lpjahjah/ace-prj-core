@@ -24,6 +24,8 @@ public class ExamesRealizadosDao {
 	
 	private final String DELETE_STATEMENT = "UPDATE exame_realizado SET dt_deletado = now() WHERE cd_exame_realizado = ?";
 	
+	private final String DELETE_BY_CD_FUNCIONARIO = "UPDATE exame_realizado SET dt_deletado = now() WHERE cd_funcionario = ?";
+	
 	private final String INSERT_STATEMENT = "INSERT INTO exame_realizado (cd_funcionario, cd_exame, dt_realizacao) VALUES (?, ?, ?)";
 	
 	private final String UPDATE_STATEMENT = "UPDATE exame_realizado SET cd_funcionario = ?, cd_exame = ?, dt_realizacao = ? WHERE cd_exame_realizado = ?";
@@ -115,6 +117,10 @@ public class ExamesRealizadosDao {
 		);
 		
 		datasource.execute(UPDATE_STATEMENT, params);
+	}
+	
+	public void deleteByCdFuncionario(Integer cdFuncionario) throws SQLException {	
+		datasource.execute(DELETE_BY_CD_FUNCIONARIO, List.of(cdFuncionario));
 	}
 	
 	public void delete(Integer id) throws SQLException {	

@@ -10,6 +10,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.Stateless;
 
 import com.ace.exames.core.models.Funcionario;
+import com.ace.exames.core.daos.ExamesRealizadosDao;
 import com.ace.exames.core.daos.FuncionariosDao;
 import com.ace.exames.core.interfaces.FuncionariosService;
 
@@ -20,6 +21,8 @@ public class FuncionariosServiceBean implements FuncionariosService {
     private SessionContext context;
 	
 	private final FuncionariosDao funcionariosDao = new FuncionariosDao();
+	
+	private final ExamesRealizadosDao examesRealizadosDao = new ExamesRealizadosDao();
 	
 	@Override
 	public List<Funcionario> getFuncionarios(int page, int size) {
@@ -83,6 +86,7 @@ public class FuncionariosServiceBean implements FuncionariosService {
 	@Override
 	public void deleteFuncionario(Integer id) {
 		try {
+			examesRealizadosDao.deleteByCdFuncionario(id);
 			funcionariosDao.delete(id);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
