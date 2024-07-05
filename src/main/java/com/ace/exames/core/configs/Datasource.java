@@ -71,9 +71,10 @@ public class Datasource {
 				prepareStatementParams(prepStatement, parameters);
 				
 				try (ResultSet rs = prepStatement.executeQuery()){
-					rs.next();
+					while (rs.next())
+						return BaseModel.fromResultSet(rs, clazz);
 					
-					return BaseModel.fromResultSet(rs, clazz);
+					return null;
 				}
 			}
 		}
