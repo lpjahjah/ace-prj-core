@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import com.ace.exames.core.models.Exame;
 import com.ace.exames.core.daos.ExamesDao;
 import com.ace.exames.core.enums.ExameStatusEnum;
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.interfaces.ExamesService;
 
 @Stateless(name = "ExamesService")
@@ -69,8 +70,9 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
-	public void createExame(Exame exame) {
+	public void createExame(Exame exame) throws RequiredFieldsException {
 		try {
+			exame.validateFields();
 			examesDao.insert(exame);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
@@ -78,8 +80,9 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
-	public void updateExame(Exame exame) {
+	public void updateExame(Exame exame) throws RequiredFieldsException {
 		try {
+			exame.validateFields();
 			examesDao.update(exame);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);

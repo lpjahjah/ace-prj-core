@@ -8,6 +8,7 @@ import com.ace.exames.core.commons.BaseModel;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @EqualsAndHashCode(callSuper=true)
 @Data
@@ -17,10 +18,13 @@ public class ExameRealizado extends BaseModel {
 
 	private Integer cdExameRealizado;
 	
+	@NonNull
 	private Funcionario funcionario;
 	
+	@NonNull
 	private Exame exame;
 	
+	@NonNull
 	private Date dtRealizacao;
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.models.Funcionario;
 
 @Remote
@@ -16,9 +17,9 @@ public interface FuncionariosService {
 
 	Funcionario getFuncionario(Integer id);
 	
-	void createFuncionario(Funcionario funcionario);
+	void createFuncionario(Funcionario funcionario) throws RequiredFieldsException;
 	
-	void updateFuncionario(Funcionario funcionario);
+	void updateFuncionario(Funcionario funcionario) throws RequiredFieldsException;
 	
 	void deleteFuncionario(Integer id);
 }

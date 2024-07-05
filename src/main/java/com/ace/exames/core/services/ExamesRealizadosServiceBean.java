@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 
 import com.ace.exames.core.models.ExameRealizado;
 import com.ace.exames.core.daos.ExamesRealizadosDao;
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.interfaces.ExamesRealizadosService;
 
 @Stateless(name = "ExamesRealizadosService")
@@ -70,8 +71,9 @@ public class ExamesRealizadosServiceBean implements ExamesRealizadosService {
 	}
 	
 	@Override
-	public void createExameRealizado(ExameRealizado exame) {
+	public void createExameRealizado(ExameRealizado exame) throws RequiredFieldsException {
 		try {
+			exame.validateFields();
 			examesRealizadosDao.insert(exame);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
@@ -79,8 +81,9 @@ public class ExamesRealizadosServiceBean implements ExamesRealizadosService {
 	}
 	
 	@Override
-	public void updateExameRealizado(ExameRealizado exame) {
+	public void updateExameRealizado(ExameRealizado exame) throws RequiredFieldsException {
 		try {
+			exame.validateFields();
 			examesRealizadosDao.update(exame);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import com.ace.exames.core.enums.ExameStatusEnum;
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.models.Exame;
 
 @Remote
@@ -17,9 +18,9 @@ public interface ExamesService {
 
 	Exame getExame(Integer id);
 	
-	void createExame(Exame exame);
+	void createExame(Exame exame) throws RequiredFieldsException;
 	
-	void updateExame(Exame exame);
+	void updateExame(Exame exame) throws RequiredFieldsException;
 	
 	void deleteExame (Integer id);
 }

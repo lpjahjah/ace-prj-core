@@ -12,6 +12,7 @@ import javax.ejb.Stateless;
 import com.ace.exames.core.models.Funcionario;
 import com.ace.exames.core.daos.ExamesRealizadosDao;
 import com.ace.exames.core.daos.FuncionariosDao;
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.interfaces.FuncionariosService;
 
 @Stateless(name = "FuncionariosService")
@@ -66,8 +67,9 @@ public class FuncionariosServiceBean implements FuncionariosService {
 	}
 	
 	@Override
-	public void createFuncionario(Funcionario funcionario) {
+	public void createFuncionario(Funcionario funcionario) throws RequiredFieldsException {
 		try {
+			funcionario.validateFields();
 			funcionariosDao.insert(funcionario);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
@@ -75,8 +77,9 @@ public class FuncionariosServiceBean implements FuncionariosService {
 	}
 	
 	@Override
-	public void updateFuncionario(Funcionario funcionario) {
+	public void updateFuncionario(Funcionario funcionario) throws RequiredFieldsException {
 		try {
+			funcionario.validateFields();
 			funcionariosDao.update(funcionario);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);

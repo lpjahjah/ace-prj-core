@@ -38,5 +38,5 @@ public class Exame extends BaseModel {
 		} catch (Exception e) {
         	throw new RuntimeException("Failed to map model from ResultSet", e);
         }
-	}		
+	}	
 }

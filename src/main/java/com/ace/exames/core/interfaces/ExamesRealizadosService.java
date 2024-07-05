@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.models.ExameRealizado;
 
 @Remote
@@ -24,9 +25,9 @@ public interface ExamesRealizadosService {
 
 	ExameRealizado getExameRealizado(Integer id);
 	
-	void createExameRealizado(ExameRealizado exameRealizado);
+	void createExameRealizado(ExameRealizado exameRealizado) throws RequiredFieldsException;
 	
-	void updateExameRealizado(ExameRealizado exameRealizado);
+	void updateExameRealizado(ExameRealizado exameRealizado) throws RequiredFieldsException;
 	
 	void deleteExameRealizado(Integer id);
 }
