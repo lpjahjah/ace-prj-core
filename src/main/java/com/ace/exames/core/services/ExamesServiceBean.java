@@ -11,7 +11,9 @@ import javax.ejb.Stateless;
 
 import com.ace.exames.core.models.Exame;
 import com.ace.exames.core.daos.ExamesDao;
+import com.ace.exames.core.daos.ExamesRealizadosDao;
 import com.ace.exames.core.enums.ExameStatusEnum;
+import com.ace.exames.core.exceptions.ExameDeletionException;
 import com.ace.exames.core.exceptions.RequiredFieldsException;
 import com.ace.exames.core.interfaces.ExamesService;
 
@@ -22,6 +24,8 @@ public class ExamesServiceBean implements ExamesService {
     private SessionContext context;
 	
 	private final ExamesDao examesDao = new ExamesDao();
+
+	private final ExamesRealizadosDao examesRealizadosDao = new ExamesRealizadosDao();
 	
 	@Override
 	public List<Exame> getExames(int page, int size) {
@@ -90,8 +94,11 @@ public class ExamesServiceBean implements ExamesService {
 	}
 	
 	@Override
-	public void deleteExame(Integer id) {
+	public void deleteExame(Integer id) throws ExameDeletionException {
 		try {
+			if (examesRealizadosDao.findByCdExame(id) != null)
+				throw new ExameDeletionException(id);
+			
 			examesDao.delete(id);
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);

@@ -18,6 +18,8 @@ public class ExamesRealizadosDao {
 	
 	private final String SELECT_STATEMENT = DEFAULT_SELECT + "LIMIT ?";
 	
+	private final String FIND_BY_CD_EXAME = DEFAULT_SELECT + "AND e.cd_exame = ?";
+	
 	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_exame_realizado LIMIT ?";
 	
 	private final String SELECT_ONE = DEFAULT_SELECT + "AND cd_exame_realizado = ?";
@@ -35,6 +37,10 @@ public class ExamesRealizadosDao {
 		List<Object> params = List.of(page * size);
 		
 		return datasource.select(SELECT_STATEMENT, params, ExameRealizado.class);
+	}
+	
+	public ExameRealizado findByCdExame(Integer cdExame) throws SQLException {		
+		return datasource.selectFirst(FIND_BY_CD_EXAME, List.of(cdExame), ExameRealizado.class);
 	}
 	
 	public List<ExameRealizado> search(
