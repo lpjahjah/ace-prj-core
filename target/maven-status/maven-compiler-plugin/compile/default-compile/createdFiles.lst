@@ -2,7 +2,9 @@ com\ace\exames\core\interfaces\ExamesRealizadosService.class
 com\ace\exames\core\models\Funcionario.class
 com\ace\exames\core\models\Exame.class
 com\ace\exames\core\services\ExamesRealizadosServiceBean.class
+com\ace\exames\core\exceptions\InitialDateGreaterThanFinalDateException.class
 com\ace\exames\core\exceptions\ExameDeletionException.class
+com\ace\exames\core\exceptions\ExameRealizadoAlreadyExistsException.class
 com\ace\exames\core\daos\ExamesRealizadosDao.class
 com\ace\exames\core\enums\ExameStatusEnum.class
 com\ace\exames\core\daos\FuncionariosDao.class

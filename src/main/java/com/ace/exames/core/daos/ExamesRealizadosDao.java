@@ -18,7 +18,11 @@ public class ExamesRealizadosDao {
 	
 	private final String SELECT_STATEMENT = DEFAULT_SELECT + "LIMIT ?";
 	
+	private final String FIND_BY_DT_REALIZACAO_BETWEEN = DEFAULT_SELECT + "AND er.dt_realizacao BETWEEN ? AND ?";
+	
 	private final String FIND_BY_CD_EXAME = DEFAULT_SELECT + "AND e.cd_exame = ?";
+	
+	private final String FIND_BY_CD_FUNCIONARIO_AND_CD_EXAME_AND_DT_REALIZACAO = DEFAULT_SELECT + "AND f.cd_funcionario = ? AND e.cd_exame = ? AND er.dt_realizacao = ?";
 	
 	private final String SEARCH_STATEMENT = DEFAULT_SELECT + "%s ORDER BY cd_exame_realizado LIMIT ?";
 	
@@ -39,8 +43,20 @@ public class ExamesRealizadosDao {
 		return datasource.select(SELECT_STATEMENT, params, ExameRealizado.class);
 	}
 	
+	public List<ExameRealizado> findByDtRealizacaoBetween(Date initalDate, Date finalDate) throws SQLException {
+		List<Object> params = List.of(initalDate, finalDate);
+		
+		return datasource.select(FIND_BY_DT_REALIZACAO_BETWEEN, params, ExameRealizado.class);
+	}
+	
 	public ExameRealizado findByCdExame(Integer cdExame) throws SQLException {		
 		return datasource.selectFirst(FIND_BY_CD_EXAME, List.of(cdExame), ExameRealizado.class);
+	}
+	
+	public ExameRealizado findByCdFuncionarioAndCdExameAndDtRealizacao(Integer cdFuncionario, Integer cdExame, Date dtRealizacao) throws SQLException {	
+		List<Object> params = List.of(cdFuncionario, cdExame, dtRealizacao);
+		
+		return datasource.selectFirst(FIND_BY_CD_FUNCIONARIO_AND_CD_EXAME_AND_DT_REALIZACAO, params, ExameRealizado.class);
 	}
 	
 	public List<ExameRealizado> search(
