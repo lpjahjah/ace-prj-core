@@ -12,4 +12,8 @@ public class RequiredFieldsException extends Exception {
 				objectName.toUpperCase()
 		));
 	}
+	
+	public RequiredFieldsException(String customMessage) {
+		super(customMessage);
+	}
 }
