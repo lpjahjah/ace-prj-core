@@ -4,6 +4,7 @@ com\ace\exames\core\models\Usuario.class
 com\ace\exames\core\daos\ExamesRealizadosDao.class
 com\ace\exames\core\enums\ExameStatusEnum.class
 com\ace\exames\core\utils\HashUtils.class
+com\ace\exames\core\dtos\AuthDetails.class
 com\ace\exames\core\services\FuncionariosServiceBean.class
 com\ace\exames\core\models\ExameRealizado.class
 com\ace\exames\core\commons\BaseModel.class
@@ -18,6 +19,7 @@ com\ace\exames\core\daos\UsuariosDao.class
 com\ace\exames\core\interfaces\UsuariosService.class
 com\ace\exames\core\exceptions\ExameDeletionException.class
 com\ace\exames\core\exceptions\ExameRealizadoAlreadyExistsException.class
+com\ace\exames\core\exceptions\LoginException.class
 com\ace\exames\core\daos\FuncionariosDao.class
 com\ace\exames\core\services\ExamesServiceBean.class
 com\ace\exames\core\interfaces\FuncionariosService.class

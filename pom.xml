@@ -114,7 +114,9 @@
                                 <include>com/ace/exames/core/models/*.class</include>
                                 <include>com/ace/exames/core/enums/*.class</include>
                                 <include>com/ace/exames/core/exceptions/*.class</include>
+                                <include>com/ace/exames/core/dtos/*.class</include>
 								<include>com/ace/exames/core/commons/BaseModel.class</include>
+								
                             </includes>
                         </configuration>
                     </execution>

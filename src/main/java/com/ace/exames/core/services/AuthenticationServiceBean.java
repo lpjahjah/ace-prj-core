@@ -8,6 +8,8 @@ import javax.ejb.Stateless;
 
 import com.ace.exames.core.models.Usuario;
 import com.ace.exames.core.daos.UsuariosDao;
+import com.ace.exames.core.dtos.AuthDetails;
+import com.ace.exames.core.exceptions.LoginException;
 import com.ace.exames.core.interfaces.AuthenticationService;
 
 @Stateless(name = "AuthenticationService")
@@ -19,9 +21,14 @@ public class AuthenticationServiceBean implements AuthenticationService {
 	private final UsuariosDao usuariosDao = new UsuariosDao();
 	
 	@Override
-	public Usuario login(String login, String senha) {
+	public AuthDetails login(String login, String senha) throws LoginException {
 		try {
-			return  usuariosDao.getByNmLoginAndDsSenha(login, senha);
+			Usuario usuario = usuariosDao.getByNmLoginAndDsSenha(login, senha);
+			
+			if (usuario == null)
+				throw new LoginException();
+			
+			return new AuthDetails(usuario.getNmLogin(), usuario.getQtTempoInatividade());
 		} catch (SQLException e) {
         	throw new RuntimeException("Failed to retrieve data from server", e);
         }

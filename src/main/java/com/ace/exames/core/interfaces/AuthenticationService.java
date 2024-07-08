@@ -2,9 +2,10 @@ package com.ace.exames.core.interfaces;
 
 import javax.ejb.Remote;
 
-import com.ace.exames.core.models.Usuario;
+import com.ace.exames.core.dtos.AuthDetails;
+import com.ace.exames.core.exceptions.LoginException;
 
 @Remote
 public interface AuthenticationService {	
-	Usuario login(String login, String senha);
+	AuthDetails login(String login, String senha) throws LoginException;
 }

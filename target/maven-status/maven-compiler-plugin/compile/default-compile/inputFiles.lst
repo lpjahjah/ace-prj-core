@@ -4,10 +4,12 @@ C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\ExamesDao.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\ExamesRealizadosDao.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\FuncionariosDao.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\daos\UsuariosDao.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\dtos\AuthDetails.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\enums\ExameStatusEnum.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\ExameDeletionException.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\ExameRealizadoAlreadyExistsException.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\InitialDateGreaterThanFinalDateException.java
+C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\LoginException.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\RequiredFieldsException.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\exceptions\UsuarioAlreadyExistsException.java
 C:\prjs\ace-prj\core\src\main\java\com\ace\exames\core\interfaces\AuthenticationService.java
