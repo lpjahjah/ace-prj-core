@@ -11,4 +11,8 @@ public class ExameDeletionException extends Exception {
 				cdExame
 		));
 	}
+	
+	public ExameDeletionException(String customMessage) {
+		super(customMessage);
+	}
 }
